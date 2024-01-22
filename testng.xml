@@ -1,0 +1,76 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MyTestSuite" verbose="1" parallel="true">
+    <test name="ModelTest" thread-count="3">
+        <classes>
+            <class name="info.dvad.test.ModelTest">
+                <methods>
+                    <include name="bTest"/>
+                    <include name="ATest"/>
+                    <include name="aTest"/>
+                </methods>
+            </class>
+            <class name="info.dvad.test.ComputerTest">
+                <methods>
+                    <include name="HP"/>
+                    <include name="Asus"/>
+                    <include name="Samsung"/>
+                </methods>
+            </class>
+            <class name="info.dvad.test.PriorityTest">
+                <methods>
+                    <include name="id1"/>
+                    <include name="id3"/>
+                    <include name="id5"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <!--Запуск методов, относящихся к нескольким группам.-->
+    <test name="group">
+        <groups>
+            <run>
+                <include name="groupName"/>
+                <include name="otherGroup"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="info.dvad.test.ComputerTest"></class>
+        </classes>
+    </test>
+    <!--    Пропуск тестовых методов, относящихся к нескольким группам.-->
+    <test name="group1">
+        <groups>
+            <run>
+                <exclude name="otherGroup"/>
+                <exclude name="groupName"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="info.dvad.test.ComputerTest"></class>
+        </classes>
+    </test>
+    <!--    Запуск тестовых методов, чтобы они были запущены в определенном порядке.-->
+    <test name="group2">
+        <groups>
+            <dependencies>
+                <group name="otherGroup" depends-on="GroupName"/>
+                <group name="GroupName" depends-on="comGroup"/>
+            </dependencies>
+        </groups>
+        <classes>
+            <class name="info.dvad.test.ComputerTest"></class>
+        </classes>
+    </test>
+<!--    Запуск группы тестовых методов, если другая группа была запущена успешно.-->
+    <test name="group3">
+        <groups>
+            <dependencies>
+                <group name="otherGroup" depends-on="GroupName"/>
+            </dependencies>
+        </groups>
+        <classes>
+            <class name="info.dvad.test.ComputerTest"></class>
+        </classes>
+    </test>
+
+</suite>
