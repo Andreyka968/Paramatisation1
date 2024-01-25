@@ -4,7 +4,7 @@ import org.testng.annotations.*;
 
 public class ComputerTest<groups> {
 
-    @Test(groups = {"groupName,comGroup"})
+    @Test(groups = {"groupName","comGroup"})
     public void Apple() {
         System.out.println("info.dvad.test.ComputerTest::Apple @ "
                 + Thread.currentThread().getName());
@@ -20,7 +20,7 @@ public class ComputerTest<groups> {
         System.out.println("info.dvad.test.ComputerTest::Asus @ " + Thread.currentThread().getName());
     }
 
-    @Test(groups = "{otherGroup,comGroup}")
+    @Test(groups = {"otherGroup","comGroup"})
     public void HP() {
         System.out.println("info.dvad.test.ComputerTest::HP @ " + Thread.currentThread().getName());
     }

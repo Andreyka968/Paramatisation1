@@ -1,9 +1,6 @@
 package info.dvad.test;
 
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeGroups;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 
 public class ModelTest {
@@ -30,6 +27,26 @@ public class ModelTest {
     @Test
     public void aTest() {
         System.out.println("I am the a test class ModelTest, ! "+Thread.currentThread().getName());
+    }
+    @AfterSuite
+    public void aftersuite() {
+        System.out.println("ModelTest  aftersuite " + Thread.currentThread().getName());
+    }
+
+
+    @BeforeGroups
+    public void BeforeGroups() {
+        System.out.println("I amt he test BeforeGroups class ModelTest, ! " + Thread.currentThread().getName());
+    }
+
+    @BeforeClass
+    public void beforeclass() {
+        System.out.println("ModelTest  beforeclass " + Thread.currentThread().getName());
+    }
+
+    @AfterClass
+    public void afterclass() {
+        System.out.println("ModelTest  afterclass " + Thread.currentThread().getName());
     }
 
 }
