@@ -1,5 +1,5 @@
 package info.dvad.test;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 
 public class ComputerTest<groups> {

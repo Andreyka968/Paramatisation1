@@ -1,8 +1,10 @@
 package info.dvad.test;
 
-import org.testng.annotations.*;
-
-
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeGroups;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterClass;
 public class ModelTest {
     @Test
     public void bTest() {
