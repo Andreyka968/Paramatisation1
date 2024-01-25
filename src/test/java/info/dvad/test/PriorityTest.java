@@ -1,10 +1,11 @@
 package info.dvad.test;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.AfterClass;
 
 @Test(enabled = true)
 public class PriorityTest {
