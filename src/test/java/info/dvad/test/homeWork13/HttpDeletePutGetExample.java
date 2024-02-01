@@ -1,9 +1,12 @@
 package info.dvad.test.homeWork13;
-
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import info.dvad.test.homeWork13.dtoUsers.DtoUser;
-import okhttp3.*;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,7 +18,7 @@ public class HttpDeletePutGetExample {
     public static void putReque() {
         // Замените URL_API на ваш фактический URL API и ID на необходимый идентификатор
         String uurl = "https://fakerestapi.azurewebsites.net/api/v1";
-        var endPoint = "/Users/4";
+        String endPoint = "/Users/4";
         final String apiUrl = uurl + endPoint;
 
         // Создание JSON-строки для отправки (в данном случае, предполагается, что у вас уже есть объект для обновления)
@@ -29,16 +32,18 @@ public class HttpDeletePutGetExample {
                 .put(RequestBody.create(MediaType.get("application/json") , jsonToUpdate))
                 .build();
 
-        try {
+        try
             // Выполнение запроса
-            Response response = client.newCall(request).execute();
+           (Response response = client.newCall(request).execute();){
 
             // Получение кода ответа
             int statusCode = response.code();
             System.out.println("Response Code: " + statusCode);
 
             // Утверждение (assert) кода ответа
-            assert statusCode == 200 : "Expected status code 200, but received: " + statusCode;
+            //assert statusCode == 200 : "Expected status code 200, but received: " + statusCode;
+            int code = response.code();
+            Assert.assertEquals(code , 200 , "Response code must be 200, but got " + code);
 
             // Опционально: получение тела ответа
             String responseBody = response.body().string();
@@ -52,7 +57,7 @@ public class HttpDeletePutGetExample {
         @Test
         public void ApiUserGet() {
             final String uurl = "https://fakerestapi.azurewebsites.net/api/v1";
-            var endPoint = "/Users";
+            String endPoint = "/Users";
             final String url = uurl + endPoint;
             OkHttpClient client = new OkHttpClient();
             System.out.println(url);
@@ -77,7 +82,7 @@ public class HttpDeletePutGetExample {
     public void deleteUsers() {
         OkHttpClient client = new OkHttpClient.Builder().build();
         String uurl = "https://fakerestapi.azurewebsites.net/api/v1";
-        var endPoint = "/Users/1";
+        String endPoint = "/Users/1";
         final String url = uurl + endPoint;
 
         Request request = new Request.Builder()
@@ -88,9 +93,9 @@ public class HttpDeletePutGetExample {
         try (Response response = client.newCall(request).execute()) {
             int code = response.code();
             Assert.assertEquals(code , 200 , "Response code must be 200,but got "
-                    + code + "eeeeeeeee");
-            var responseBody = response.body().string();
-            System.out.println(responseBody);
+                    + code );
+           // String responseBody = response.body().string();
+          //  System.out.println(responseBody);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
